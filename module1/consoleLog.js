@@ -1,15 +1,21 @@
-﻿var count = 99;
-var word = "bottles";
-var mms = 10;
-while ( count > 0 ) {
-  console.log(count + " " + word + " of rootbeer on the wall");
-  console.log(count + " " + word + " of rootbeer,");
-  console.log("Take one down, pass it around,");
-  count--;
-  if (count > 0) {
-   console.log(count + " " + word + " of rootbeer on the wall.");
-  } else {
-   console.log("No " + word + " of rootbeer on the wall.");
-  }
-}
+﻿var myInteger = 99;
+var myDecimal = 99.999;
+var myString = "99.999999";
+var myEmptyString = "";
+var myBoolean = true;
+var myExponential = 99e-3;
+var myUndefined1;
+var myUndefined2 = undefined;
+var myNull = null;
+console.log("Integer: " + myInteger);
+console.log("Decimal: " + myDecimal);
+console.log("Boolean: " + myBoolean);
+console.log("Empty String: " + myEmptyString);
+console.log("String: " + myString);
+console.log("Exponential: " + myExponential);
+console.log("Undefined1: " + myUndefined1);
+console.log("Undefined2: " + myUndefined2);
+console.log("Null: " + myNull);
+console.log("Undefined == Null: " + (myUndefined1 == myNull));
+console.log("Undefined === Null: " + (myUndefined1 === myNull));
 
