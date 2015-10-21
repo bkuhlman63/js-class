@@ -1,0 +1,96 @@
+﻿<!-- Brad Kuhlman -->
+<!-- User is prompted to enter coffee, milk, and sweetener. -->
+<!-- Each drink and condiment have individual prices. -->
+<!-- Total price is shown in console. -->
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Coffee</title>
+</head>
+<body>
+	<h1>UW JavaScript Assignment 3-2: Coffee Prompter</h1>
+	<script>
+		// init var
+		var totalPrice = 0;
+		var bfastBlendPrice = 1.50;  // default
+		var komodoBlendPrice = 1.75;
+		var wholeMilkPrice = 0.50;  // default
+		var fatFreeMilkPrice = 0.35;
+		var realSugarPrice = 0.10;  // default
+		var artifSugarPrice = 0.07;
+		
+		// coffee choices; get, test, and calculate total 
+		var coffeeChoice = prompt("Enter coffee: Breakfast Blend ($1.50), Komodo Dragon Blend ($1.75)","Breakfast Blend");
+		// did user cancel entire coffee
+		if (coffeeChoice != null) {
+			if (coffeeChoice == "Breakfast Blend") {
+				// add breakfast blend price
+				totalPrice = totalPrice + bfastBlendPrice;
+			} else if (coffeeChoice == "Komodo Dragon Blend") {
+				// add komodo blend price
+				totalPrice = totalPrice + komodoBlendPrice;
+			}
+			else {
+				// did not recognize choice; setting defaults
+				console.log("Did not recognize coffee choice; setting it to default 'Breakfast Blend'");
+				coffeeChoice = "Breakfast Blend";
+				totalPrice = totalPrice + bfastBlendPrice;
+			}
+			// milk choices; get, test, and calculate total 
+			var milkChoice = prompt("Enter milk: Whole ($0.50), Fat Free ($0.35)","Whole");
+			// did user cancel milk choice
+			if (milkChoice != null) {
+				if (milkChoice == "Whole") {
+					// add whole milk price
+					totalPrice = totalPrice + wholeMilkPrice;
+				} else if (milkChoice == "Fat Free") {
+					// add fat free milk price
+					totalPrice = totalPrice + fatFreeMilkPrice;
+				}
+				else {
+					// did not recognize choice; setting defaults
+					console.log("Did not recognize milk choice; setting it to default 'Whole'");
+					milkChoice = "Whole";
+					totalPrice = totalPrice + wholeMilkPrice;
+				}
+				// sweetener choices; get, test, and calculate total 
+				var sweetenerChoice = prompt("Enter sweetener: Real Sugar ($0.10), Artificial ($0.07)","Real Sugar");
+				// did user cancel sweetener choice
+				if (sweetenerChoice != null) {
+					if (sweetenerChoice == "Real Sugar") {
+						// add real sugar price
+						totalPrice = totalPrice + realSugarPrice;
+					} else if (sweetenerChoice == "Artificial") {
+						// add artificial sugar price
+						totalPrice = totalPrice + artifSugarPrice;
+					}
+					else {
+						// did not recognize choice; setting defaults
+						console.log("Did not recognize sweetener choice; setting it to default 'Real Sugar'");
+						sweetenerChoice = "Real Sugar";
+						totalPrice = totalPrice + realSugarPrice;
+					}
+				} else {
+					// user cancelled sweetener option
+					sweetenerChoice = 'no';
+				}// end of sweetener
+			} else {
+				// user cancelled milk option
+				milkChoice = 'no';
+				sweetenerChoice = 'no';
+			} // end of milk
+		} // end of coffee
+		
+		// selections
+		if (totalPrice != 0) {
+			console.log("Your choices: " + coffeeChoice + " coffee, " + milkChoice + " milk, with " + sweetenerChoice + " sweetener");
+			console.log("Total Price is: $" + totalPrice.toFixed(2));
+		}
+		// no selections
+		else {
+			console.log("Okay, maybe another time...");
+		}
+	</script>
+</body>
+</html>
