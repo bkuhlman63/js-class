@@ -1,0 +1,42 @@
+﻿<!-- Brad Kuhlman -->
+<!-- Assignment 4-2 optional; Paper folds -->
+<!-- Write function getThickness that returns the thickness of folded paper -->
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Paper Folds</title>
+</head>
+<body>
+	<h1>UW JavaScript Assignment 4-2 optional: Paper Folds</h1>
+	<script>
+
+		// init vars
+		var paperThickness = 0.1;  // in mm
+		var numFolds = 25;
+		
+		// get paper thickness
+		var foldThickness = getThickness(numFolds,paperThickness);
+		// check for units
+		if (foldThickness >= 100000) {
+			displayThick = foldThickness/1000000;
+			displayUnits = 'km';
+		} else {
+			displayThick = foldThickness;
+			displayUnits = 'mm';
+		}
+		// display results to console
+		console.log("Using paper thickness of " + paperThickness + " (mm), after " + numFolds + 
+		" fold(s), the thickness is " + displayThick.toFixed(2) + " (" + displayUnits + ") ");
+			
+
+		// function to return thickness of paper folds
+		function getThickness(numFolds, paperThickness) {
+			// pt * (2 ^ nf)
+			var totalThick = paperThickness * Math.pow(2,numFolds);
+			return totalThick;
+		}
+		
+	</script>
+</body>
+</html>

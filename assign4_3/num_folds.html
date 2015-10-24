@@ -1,0 +1,43 @@
+﻿<!-- Brad Kuhlman -->
+<!-- Assignment 4-3 optional; More Paper folds -->
+<!-- Write function getNumberOfFolds that returns number of folds to get to a distance -->
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>More Paper Folds</title>
+</head>
+<body>
+	<h1>UW JavaScript Assignment 4-3 optional: More Paper Folds</h1>
+	<script>
+
+		// init vars
+		var paperThickness = 0.1;  // in mm
+		var desiredDistance = 384403; // in km
+		
+		// convert distance from km to mm; get number of folds to reach desired distance
+		var numFolds = getNumberOfFolds(paperThickness,convDistanceKmToMm(desiredDistance));
+		// display results to console
+		console.log("Using paper thickness of " + paperThickness + " (mm), it would take " + numFolds.toFixed(2) + 
+		" folds to reach " + desiredDistance + " (km).");
+
+		// function to return number of folds to reach distance
+		function getNumberOfFolds(paperThickness,desiredDistance) {
+			// log2(d/pt)
+			var numFolds = getBaseLog(2,desiredDistance / paperThickness);
+			return numFolds;
+		}
+
+		// function to return the log base x of a number y
+		function getBaseLog(x,y) {
+			return (Math.log(y)/Math.log(x));
+		}
+
+		// function to convert distance from km to mm
+		function convDistanceKmToMm(dist) {
+			return (dist * 1000000);
+		}
+		
+	</script>
+</body>
+</html>

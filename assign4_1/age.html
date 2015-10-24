@@ -1,0 +1,31 @@
+﻿<!-- Brad Kuhlman -->
+<!-- Assignment 4-1; Calculate age in seconds -->
+<!-- Write function calculateAgeInSecs that converts your age in years to seconds -->
+<!-- and returns value.  Returned value is displayed in console. -->
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Age</title>
+</head>
+<body>
+	<h1>UW JavaScript Assignment 4-1: Age Converter</h1>
+	<script>
+
+		// init vars
+		var firstName = "Brad";
+		var age = 52;
+		
+		var ageSecs = calculateAgeInSecs(age);
+		console.log(firstName + " your age is: " + age + " (years), " + ageSecs + " (secs) ");
+
+		// function to convert age in years to secs
+		function calculateAgeInSecs(ageYears) {
+			// year * 365 days * 24 hours * 60 minutes * 60 secs
+			var ageSecs = ageYears * 365 * 24 * 60 * 60;
+			return ageSecs;
+		}
+		
+	</script>
+</body>
+</html>
