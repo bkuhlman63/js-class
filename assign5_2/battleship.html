@@ -1,0 +1,56 @@
+﻿<!-- Brad Kuhlman -->
+<!-- Assignment 5-2 (Optional); Update Battleship to use Arrays -->
+<!-- Update the Battleship game we did earlier so that it uses an array of length 3, named locations, to store the locations of a ship instead of separate variables.  E.g. a ship at location 3, 4, 5 will have a locations array of [3, 4, 5]. -->
+<!-- Place the ship randomly (so the location is different each time you play). -->
+<!-- Use a second array, named hits, to keep track of hits. E.g. if a ship is at location 3, 4, 5, and you hit a ship at locations 3 and 5 then the array will look like: -->
+<!--    hits: ["hit", "" "hit"] -->
+<!--    The string "hit" at index 0 of hits indicates the ship has been hit at the location specified at index 0 of the locations array -->
+<!--    The ship is sunk when all three items in the hits array are "hit". -->
+<!-- Modify the previous Battleship game to use the locations and hits arrays rather the variables we were using before. -->
+<!-- Remember: the locations array and the hits array are parallel arrays. -->
+
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Battleship using Arrays</title>
+</head>
+<body>
+	<h1>UW JavaScript Assignment 5-2 (Optional): Update Battleship to use Arrays</h1>
+	<script>
+
+		// init vars
+		var maxArrayLength = 7;
+		var boatLength = 3;
+		var randArray = [];
+		var location = [];
+		var hits = [];
+		var guess;
+		var guesses = 0;
+		var isSunk = false;
+		
+		// get random number array
+		var randArray = generateShipLocationArray(boatLength,maxArrayLength);
+		
+		
+		// print out random number array
+		console.log("Random boat array: ",randArray);
+
+		// function to return array with random ship location array
+		// parameters:
+		//   boatLength - length of boat; int
+		//   arrayLength - length of array for random location; int
+		function generateShipLocationArray(boatLength,arrayLength) {
+			var randomShipArray = [];
+			// get random start point for boat; no wrapping
+			var randomStart = Math.floor(Math.random() * (arrayLength - boatLength + 1));
+			// fill up random ship location array
+			for (var i = 0; i < boatLength; i++) {
+				randomShipArray.push(randomStart+i);
+			}
+			return randomShipArray;
+		}
+		
+	</script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+﻿<!-- Brad Kuhlman -->
+<!-- Assignment 5-1; Array Practice -->
+<!-- Write a function that generates an array of ten random numbers, and returns that array. -->
+<!-- Write a function that takes an array of values, and creates and returns a new array consisting of the values at the even numbered indexes of the original array. (In other words, the function returns an array containing every other value in the original array). -->
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Array Practice</title>
+</head>
+<body>
+	<h1>UW JavaScript Assignment 5-1: Array Practice</h1>
+	<script>
+
+		// init vars
+		var maxRandomNumber = 100;
+		var maxArrayLength = 10;
+		
+		// get random number array
+		randArray = generateNumberArray(maxRandomNumber,maxArrayLength);
+		
+		// print out random number array
+		console.log("Random number array: ",randArray);
+		// print out array of even index values
+		console.log("Array with values at even indexes: ",evenIndexArray(randArray));
+
+		// function to return array with random numbers
+		// parameters:
+		//   maxNum - max number for random generator; int
+		//   arrayLength - length of array containing max numbers; int
+		function generateNumberArray(maxNum,arrayLength) {
+			var randomArray = [];
+			for (var i = 0; i < arrayLength; i++) {
+				randomArray.push(Math.floor(Math.random() * maxNum));
+			}
+			return randomArray;
+		}
+
+		// function to return array with values at even indexes; 0,2,4,6...
+		// parameters:
+		//   numArray - array of values; array
+		function evenIndexArray(numArray) {
+			var evenIndexArray = [];
+			for (var i = 0; i < numArray.length; i=i+2) {
+				evenIndexArray.push(numArray[i]);
+			}
+			return evenIndexArray;
+		}
+		
+	</script>
+</body>
+</html>
