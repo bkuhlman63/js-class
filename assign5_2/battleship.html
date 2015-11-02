@@ -23,18 +23,61 @@
 		var maxArrayLength = 7;
 		var boatLength = 3;
 		var randArray = [];
-		var location = [];
-		var hits = [];
-		var guess;
+		var hitsArray = [];
 		var guesses = 0;
 		var isSunk = false;
+		var guess;
+		var hitCount;
 		
 		// get random number array
 		var randArray = generateShipLocationArray(boatLength,maxArrayLength);
-		
-		
+		// init Hits Array with empty string
+		var hitsArray = initHitsArray(boatLength);
+
 		// print out random number array
 		console.log("Random boat array: ",randArray);
+		
+		while (isSunk == false) {
+			// prompt user for number and convert from sting to integer
+			guess = parseInt(prompt("Ready, aim, fire! (enter a number from 0-6):"));
+			// did user cancel out
+			if (guess == null || guess == '') {
+				break;
+			} else {
+				if (guess < 0 || guess > 6) {
+				alert("Please enter a valid cell number!");
+				} else {
+					// increment guesses count
+					guesses = guesses + 1;
+					// check if guess is in random array
+					if (randArray.indexOf(guess) > -1) {
+						// alert user of hit
+						alert("HIT!");
+						// set index of hit
+						hitsArray[randArray.indexOf(guess)]= "hit"
+					}
+					// check hit array for hits
+					hitCount = 0;
+					for (var i = 0; i < boatLength; i++) {
+						if (hitsArray[i] == "hit") {
+							hitCount++
+						}
+					}
+					// check if hit count equals boat length
+					if (hitCount == boatLength) {
+						// if equal, it's sank
+						// set value to get out and alert user
+						isSunk = true;
+						alert("You sank my battleship!");						
+					}
+				} 
+			} 
+		} // end while
+		
+		// set stats and alert user
+		var stats = "You took " + guesses + " guesses to sink the battleship, " +
+					"which means your shooting accuracy was " + ((boatLength/guesses)*100).toFixed(2) + "%";
+		alert(stats);
 
 		// function to return array with random ship location array
 		// parameters:
@@ -49,6 +92,17 @@
 				randomShipArray.push(randomStart+i);
 			}
 			return randomShipArray;
+		}
+
+		// function to return array with empty string for hits array
+		// parameters:
+		//   boatLength - length of boat; int
+		function initHitsArray(boatLength) {
+			var hitsArray = [];
+			for (var i = 0; i < boatLength; i++) {
+				hitsArray.push("");
+			}
+			return hitsArray;
 		}
 		
 	</script>
