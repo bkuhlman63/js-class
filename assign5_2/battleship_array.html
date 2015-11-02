@@ -26,58 +26,71 @@
 		var hitsArray = [];
 		var guesses = 0;
 		var isSunk = false;
-		var guess;
+		var guessStr;
+		var guessInt;
 		var hitCount;
+		var stats;
 		
 		// get random number array
-		var randArray = generateShipLocationArray(boatLength,maxArrayLength);
+		var randArray = generateShipLocationArray(boatLength, maxArrayLength);
 		// init Hits Array with empty string
 		var hitsArray = initHitsArray(boatLength);
 
 		// print out random number array
-		console.log("Random boat array: ",randArray);
+		console.log("Random boat array: ", randArray);
 		
 		while (isSunk == false) {
 			// prompt user for number and convert from sting to integer
-			guess = parseInt(prompt("Ready, aim, fire! (enter a number from 0-6):"));
-			// did user cancel out
-			if (guess == null || guess == '') {
+			guessStr = prompt("Ready, aim, fire! (enter a number from 0-6):");
+			if (guessStr == "") {
+				// user entered empty value
+				alert("You entered empty value!  Please enter a valid number between 0 and 6!");
+			} else if (guessStr == null) {
+				// user canceled out; done playing
 				break;
 			} else {
-				if (guess < 0 || guess > 6) {
-				alert("Please enter a valid cell number!");
+				// convert string value to integer
+				guessInt = parseInt(guessStr,10);
+				// validate guess is within parameters
+				if (guessInt < 0 || guessInt > 6) {
+					alert("Please enter a valid number between 0 and 6!");
 				} else {
 					// increment guesses count
 					guesses = guesses + 1;
 					// check if guess is in random array
-					if (randArray.indexOf(guess) > -1) {
+					if (randArray.indexOf(guessInt) > -1) {
 						// alert user of hit
 						alert("HIT!");
-						// set index of hit
-						hitsArray[randArray.indexOf(guess)]= "hit"
+						// set location of hit
+						hitsArray[randArray.indexOf(guessInt)] = "hit";
 					}
-					// check hit array for hits
+					// check hit array for all hit locations
 					hitCount = 0;
 					for (var i = 0; i < boatLength; i++) {
 						if (hitsArray[i] == "hit") {
-							hitCount++
+							hitCount++;
 						}
 					}
 					// check if hit count equals boat length
 					if (hitCount == boatLength) {
-						// if equal, it's sank
-						// set value to get out and alert user
+						// if equal, boat is sunk
+						// set value to get out and alert user boat is sunk
 						isSunk = true;
 						alert("You sank my battleship!");						
 					}
 				} 
 			} 
 		} // end while
-		
-		// set stats and alert user
-		var stats = "You took " + guesses + " guesses to sink the battleship, " +
-					"which means your shooting accuracy was " + ((boatLength/guesses)*100).toFixed(2) + "%";
-		alert(stats);
+
+		// did user cancel?
+		if ( guessStr == null ) {
+			alert("Don't want to play now?  Okay, understand, maybe next time...");
+		} else {
+			// set stats and alert user
+			stats = "You took " + guesses + " guesses to sink the battleship, " +
+						"which means your shooting accuracy was " + ((boatLength/guesses)*100).toFixed(2) + "%";
+			alert(stats);
+		}
 
 		// function to return array with random ship location array
 		// parameters:
