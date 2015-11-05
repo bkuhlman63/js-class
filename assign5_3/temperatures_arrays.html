@@ -14,7 +14,9 @@
 	<h1>UW JavaScript Assignment 5-3 (Optional): Temperatures Arrays</h1>
 	<script>
 
+		// init var
 		var tempsForWeek = [];
+		// create tempsForWeek array
 		tempsForWeek[0] = [56, 59, 63, 66, 67, 69, 70, 69, 65, 62, 59, 56]; // Monday
 		tempsForWeek[1] = [57, 59, 61, 64, 67, 69, 70, 71, 71, 69, 67, 64]; // Tuesday
 		tempsForWeek[2] = [58, 60, 62, 64, 66, 68, 69, 70, 70, 69, 62, 57]; // Wednesday
@@ -22,37 +24,56 @@
 		tempsForWeek[4] = [52, 59, 59, 63, 67, 70, 72, 73, 77, 74, 70, 65]; // Friday
 		tempsForWeek[5] = [60, 58, 62, 64, 69, 70, 74, 75, 77, 77, 74, 72]; // Saturday
 		tempsForWeek[6] = [63, 63, 64, 68, 71, 74, 75, 76, 77, 75, 74, 73]; // Sunday
-
-		// homework:
-		// Write a function to find the highest temperature of the week.
-		// Write a function to return an array of days of the week e.g. ["Monday", "Wednesday"]
-		//   that hit that high temperature
-
-		function findHighTemp(array2d) {
-			// your code here
-		}
-
-		console.log("The highest temperature for the week was: ", findHighTemp(tempsForWeek));
-
-		var daysOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
-
-		function findDaysWithHighestTemp(array2d) {
-			// your code here
-		}
-
-		console.log("Days with highest temp: ", findDaysWithHighestTemp(tempsForWeek));
-
-		// function to return array with empty string for hits array
-		// parameters:
-		//   boatLength - length of boat; int
-		function initHitsArray(boatLength) {
-			var hitsArray = [];
-			for (var i = 0; i < boatLength; i++) {
-				hitsArray.push("");
-			}
-			return hitsArray;
-		}
 		
+		console.log("The highest temperature for the week was: ", findHighTemp(tempsForWeek));
+		console.log("Days with highest temp: ", findDaysWithHighestTemp(tempsForWeek).join(", "));
+
+		// function to return the highest temperature of the week
+		// parameters:
+		//   array2d - 2-dimensional array
+		function findHighTemp(array2d) {
+			// init var
+			var highDayTemp = 0;
+			var highWeekTemp = 0;
+			// go through each day array
+			for (var i = 0; i < array2d.length; i++) {
+				// go through each temp throughout day
+				for (var j = 0; j < array2d[i].length; j++) {
+					// is it highest value in day
+					if (array2d[i][j] > highDayTemp) {
+						// set high day temp
+						highDayTemp = array2d[i][j];
+					}
+				}
+				// is it highest value in week
+				if (highDayTemp > highWeekTemp) {
+					// set high week temp
+					highWeekTemp = highDayTemp;
+				}
+			}
+			return highWeekTemp;
+		}
+
+		// function to return an array of days of the week e.g. ["Monday", "Wednesday"] that hit the high temp
+		// parameters:
+		//   array2d - 2-dimensional array
+		function findDaysWithHighestTemp(array2d) {
+			// days of the week array
+			var daysOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+			// init found week array
+			var foundDays = [];
+			// get high temp from 2D array
+			var highTemp = findHighTemp(tempsForWeek);
+			for (var i = 0; i < array2d.length; i++) {
+				// does day array contain high temp
+				if ( array2d[i].indexOf(highTemp) > -1) {
+					// found day, push day in array
+					foundDays.push(daysOfWeek[i]);
+				}
+			}
+			return foundDays;
+		}
+
 	</script>
 </body>
 </html>
