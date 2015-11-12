@@ -1,0 +1,45 @@
+﻿<!-- Brad Kuhlman -->
+<!-- Assignment 6-1; Object Property -->
+<!-- Pass the rainbow object to the walkTheDog function. -->
+<!-- The walkTheDog function depends on the object having a walkTimes array property. But rainbow doesn't have one. -->
+<!-- What happens when you try to call walkTheDog, with rainbow as the argument? Describe the error you get. Why do you get the error you do? -->
+<!-- 	* got the following console error: Uncaught TypeError: Cannot read property 'length' of undefined -->
+<!-- 	* this occured because object 'rainbow' has missing / undefined array property 'walktimes'. -->
+<!-- How would you fix the code so it works?? -->
+<!-- 	* to fix this error, add array property 'walktimes' to object 'rainbow'. -->
+<!-- Turn in the file fixed so you don't see this error. -->
+
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Object Property</title>
+</head>
+<body>
+	<h1>UW JavaScript Assignment 6-1: Object Property</h1>
+	<script>
+
+		// init var
+		var rainbow = {
+			name: "Rainbow",
+			weight: 16,
+			breed: "Beagle",
+			walkTimes: ["5:55","14:14","1:11","15:15","2:22","4:44"],
+			likesFetching: true
+		};
+
+		function walkTheDog(dog) {
+			console.log(dog.name + " likes to be walked at: ");
+			for (var i = 0; i < dog.walkTimes.length; i++)  {
+				console.log(dog.walkTimes[i]);
+			}
+			if (dog.likesFetching == true) {
+				console.log("Play fetch with " + dog.name);
+			}
+		}
+
+		walkTheDog(rainbow);
+		
+	</script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+﻿<!-- Brad Kuhlman -->
+<!-- Assignment 6-2; Create Object -->
+<!-- Create an object to represent a person, with a name, an age, and any other attributes you'd like to add. -->
+<!-- Add a method property, display, to display a person's info (using console.log). -->
+<!-- Add another method property, canBuyAlcohol. The method returns true if the age is greater or equal to 21, and false otherwise. Test on age = 19, age = 21, and age = 42. -->
+<!-- Add a birthday method property, birthday, to increase the age of the person by 1 year. -->
+<!-- Add code to call the methods of your person object. -->
+
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Create Object</title>
+</head>
+<body>
+	<h1>UW JavaScript Assignment 6-2: Create Object</h1>
+	<script>
+
+		// init var
+		var myPerson = {
+			name: "Brad Kuhlman",
+			age: 52,
+			occupation: "SDET Engineer",
+			workPlace: "Fluke Networks",
+			location: "Everett, WA",
+			display: function() {
+				console.log("Hi, my name is " + this.name + " and I am " + this.age + 
+				" years young :-). I live in " + this.location + " and work at " +
+				this.workPlace + " as a " + this.occupation + ".");
+			},
+			canBuyAlcohol: function() {
+				if (this.age >= 21) {
+					return true;
+				} else {
+					return false;
+				}
+			},
+			birthday: function() {
+				this.age = this.age + 1;
+			}
+		};
+
+		myPerson.display();
+		myPerson.birthday();
+		console.log("It's my birthday and I am now " + myPerson.age);
+		console.log("Age : buy alcohol (true or false)");
+		myPerson.age = 19;
+		console.log( myPerson.age + ": " + myPerson.canBuyAlcohol());
+		myPerson.age = 21;
+		console.log(myPerson.age + ": " + myPerson.canBuyAlcohol());
+		myPerson.age = 42;
+		console.log(myPerson.age + ": " + myPerson.canBuyAlcohol());
+		
+	</script>
+</body>
+</html>
