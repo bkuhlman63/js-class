@@ -1,0 +1,132 @@
+﻿<!-- Brad Kuhlman -->
+<!-- Assignment 6-3 (Optional); Update Battleship to use Objects -->
+<!-- Rework the Battleship game to create a ship object representing a ship in the game. -->
+<!-- Represent a ship as an object, using arrays to store the locations and the hits. -->
+<!-- Add a method, init, to initialize your ship's locations to a random position. -->
+<!-- Add a method, strike, to your ship that you can use to try to hit a ship. Make sure the hit is successful only if it matches a location of the ship!! Notify the user if they got a hit. -->
+<!-- Add a method, isSunk, to your ship to test to see if the ship is sunk or not (it must be hit in all three locations to be sunk). Notify the user if they sunk the ship. isSunk should return true if the ship is sunk and false otherwise. -->
+
+
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Battleship using Objects</title>
+</head>
+<body>
+	<h1>UW JavaScript Assignment 6-3 (Optional): Update Battleship to use Objects</h1>
+	<script>
+
+		// init vars
+		var ship = {
+			// initialize the ship's location
+			randomShipLocationArray: [],
+			// init hits array
+			hitsArray: [],
+			isCancelled: false,
+			guesses: 0,
+			shipLength: 0,
+
+			// method to set array with random ship location along with hits array
+			// parameters:
+			//   shipLength - length of ship; int
+			//   arrayLength - length of array for random location; int
+			init: function(shipLength,arrayLength) {
+				this.shipLength = shipLength
+				// get random start point for ship; no wrapping
+				var randomStart = Math.floor(Math.random() * (arrayLength - shipLength + 1));
+				// fill up random ship location array
+				for (var i = 0; i < shipLength; i++) {
+					this.randomShipLocationArray.push(randomStart+i);
+				}
+				
+				// array with empty string for hits array				
+				for (var i = 0; i < shipLength; i++) {
+					this.hitsArray.push("");
+				}
+			},
+
+			// method to prompt user for location, test to see if it's a hit,
+			// and let user know if they got a hit or miss
+			strike: function() {
+
+				// prompt user for number and convert from sting to integer
+				var guessStr = prompt("Ready, aim, fire! (enter a number from 0-6):");
+				if (guessStr == "") {
+					// user entered empty value
+					alert("You entered empty value!  Please enter a valid number between 0 and 6!");
+				} else if (guessStr == null) {
+					// user canceled out; done playing
+					this.isCancelled = true;
+				} else {
+					// convert string value to integer
+					var guessInt = parseInt(guessStr,10);
+					// validate guess is within parameters
+					if (guessInt < 0 || guessInt > 6) {
+						alert("Please enter a valid number between 0 and 6!");
+					} else {
+						// increment guesses count
+						this.guesses = this.guesses + 1;
+						// check if guess is in random array
+						if (this.randomShipLocationArray.indexOf(guessInt) > -1) {
+							// alert user of hit
+							alert("HIT!");
+							// set location of hit
+							this.hitsArray[this.randomShipLocationArray.indexOf(guessInt)] = "hit";
+						} else {
+							// alert user of miss
+							alert("MISS!");
+						}
+					} 
+				} 
+				
+			},
+			// method to check to see if the ship is sunk, let user know if they sunk the ship,
+			// and return true if the ship is sunk; otherwise return false
+			isSunk: function() {
+
+				// check hit array for all hit locations
+				var hitCount = 0;
+				for (var i = 0; i < this.shipLength; i++) {
+					if (this.hitsArray[i] == "hit") {
+						hitCount++;
+					}
+				}
+
+				// check if hit count equals ship length
+				if (hitCount == this.shipLength) {
+					// if equal, ship is sunk
+					// set value to get out and alert user ship is sunk
+					alert("You sank my battleship!");					
+					return true;
+				} else {
+					return false;
+				}
+			}
+		};
+
+		// init ship with size and length of array
+		ship.init(3,7);
+		console.log(ship.randomShipLocationArray)
+		while (ship.isSunk() == false) {
+			ship.strike();
+			// break out if user cancels play
+			if (ship.isCancelled) {
+				break 
+			}
+		}
+
+		if ( ship.isCancelled ) {
+			// user cancelled out of game
+			alert("Don't want to play now?  Okay, understand, maybe next time...");
+		} else {
+			// set stats and alert user
+			stats = "You took " + ship.guesses + " guesses to sink the battleship, " +
+						"which means your shooting accuracy was " + ((ship.shipLength/ship.guesses)*100).toFixed(2) + "%";
+			alert(stats);
+		}
+		
+		
+	</script>
+</body>
+</html>
