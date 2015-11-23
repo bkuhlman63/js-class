@@ -1,0 +1,60 @@
+﻿<!-- Brad Kuhlman -->
+<!-- Assignment 7-1; Manipulate the DOM with JavaScript -->
+<!-- Create a web page with a heading, a paragraph of text, an image, and a <div> element: <h1>, <p>, <img>, <div> -->
+<!-- Give each element a unique id. -->
+<!-- Use any creative commons image: https://www.flickr.com/creativecommons/by-2.0/ (Links to an external site.) -->
+<!-- Add a CSS style to style the elements in your page. -->
+<!-- Write code to apply style using JavaScript to elements once the page is loaded. -->
+<!-- Write code to add an "alt" attribute to the image once the page is loaded. (The alt attribute contains a textual description of the image). -->
+<!-- Write code to get the <div> from the DOM, and display that <div>'s innerHTML value in the console. -->
+<!-- Write code to get the <img> from the DOM, and display that element's alt attribute value in the console (the one you added earlier). -->
+
+
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Dream Job</title>
+	
+	<!-- setup CSS sytle classes -->
+	<style>
+		.aquatext { color: aqua; }
+		.aqua130text { color: aqua; font-size:130%}
+		.oldlacebody { background-color: oldlace}
+	</style>
+
+	<script>
+		// access code only after page is fully loaded
+		window.onload = function() {
+			// set variable to elements in body
+			//  change elements style (color, text size)
+			var bodyBackground = document.getElementById("myBody");
+			bodyBackground.setAttribute("class","oldlacebody");
+			var headerText = document.getElementById("dreamJobHeaderId");
+			headerText.setAttribute("class","aquatext");
+			var writingCodeText = document.getElementById("writingCodeId");
+			writingCodeText.setAttribute("class","aqua130text");
+			var divText = document.getElementById("myDivId");
+			divText.setAttribute("class","aqua130text");
+			// get element by ID and send inner values to console log
+			console.log(document.getElementById("myDivId").innerHTML);
+			console.log(document.getElementById("hawaiiImageId").alt)
+		}
+	</script>
+	
+</head>
+<body id="myBody">
+	<!-- create header, paragraph, image, div with identifiers -->
+	<h1 id="dreamJobHeaderId" align="center">Dream Job</h1>
+	<p id="writingCodeId" align="center">My Dream job: writing test automation software code on a beach in Hawaii...</p>
+	<center>
+		<img id="hawaiiImageId" src="https://c1.staticflickr.com/1/13/14148474_1546f04481_d.jpg" alt="Hawaii beach">
+	</center>
+	<div id="myDivId" name="myDivName" title="Div Element" style="text-align:center;border: 1px solid aqua;">
+	  <p>I must be dreaming...  Shhh, please don't wake me up...
+		<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/PEO-smiley_sleeping.svg/40px-PEO-smiley_sleeping.svg.png" alt="Sleepy Smiley" align="middle">
+	  </p>
+	</div>	
+
+</body>
+</html>
