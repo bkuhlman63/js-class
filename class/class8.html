@@ -1,0 +1,41 @@
+﻿<!-- Brad Kuhlman -->
+<!-- Assignment 6-3 (Optional); Update Battleship to use Objects -->
+<!-- Rework the Battleship game to create a ship object representing a ship in the game. -->
+<!-- Represent a ship as an object, using arrays to store the locations and the hits. -->
+<!-- Add a method, init, to initialize your ship's locations to a random position. -->
+<!-- Add a method, strike, to your ship that you can use to try to hit a ship. Make sure the hit is successful only if it matches a location of the ship!! Notify the user if they got a hit. -->
+<!-- Add a method, isSunk, to your ship to test to see if the ship is sunk or not (it must be hit in all three locations to be sunk). Notify the user if they sunk the ship. isSunk should return true if the ship is sunk and false otherwise. -->
+
+
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Planets</title>
+	<style>
+		.redtext {color: red;}
+	</style>
+	<script>
+	function init() {
+		var fireButton = document.getElementById("fire");
+		fireButton.onclick = fire;
+	}
+	window.onload = init;
+
+	function fire() {
+		var planet = document.getElementById("greenplanet");
+		planet.innerHTML = "Red Alert: hit by phaser fire!"; 
+		planet.setAttribute("class", "redtext");
+	}	</script>
+</head>
+<body>
+	<h1>Green Planet</h1>
+	<p id ="greenplanet">All is well</p>
+	<h1>Red Planet</h1>
+	<p id ="redplanet">Nothing to report</p>
+	<h1>Blue Planet</h1>
+	<p id ="blueplanet">All is OK</p>
+	<button id="fire">Fire!</button>
+	
+</body>
+</html>

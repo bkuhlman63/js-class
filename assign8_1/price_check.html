@@ -1,0 +1,67 @@
+﻿<!-- Brad Kuhlman -->
+<!-- Assignment 8-1; Price Check -->
+<!-- Create a web page that prompts the user to enter a price (e.g. 33.99), and updates a <div> element in the page to show: -->
+<!-- The number of dollars is: 33 -->
+<!-- The number of cents is 99 -->
+<!-- Remember that the prompt function returns different types of values depending on what the user enters. -->
+<!-- Make sure your code checks to see if the value returned is the empty string or null. If it's not, then the value will be a string. -->
+<!-- Make sure the price is not 0! Make sure the first character the user types in is NOT $! -->
+<!-- Use string methods to analyze the data that the user types in. Hint: check out the split method. -->
+
+
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Price Check</title>
+</head>
+<body>
+	<h1>UW JavaScript Assignment 8-1: Price Check</h1>
+	<script>
+
+		// init variables
+		var guessPrice = "";
+		var userCancel = false;
+		var priceArray = [];
+		var guessDollar = 0;
+		var guessCents = 0;
+		
+		console.log(userCancel);
+		
+		while (!userCancel) {
+			console.log(userCancel);
+
+			// prompt user for price and convert from sting to integer
+			guessPrice = prompt("Enter a price (e.g. 12.34).  Note, no '$'.");
+			if (guessPrice == "") {
+				// user entered empty value
+				alert("You entered empty value!  Please enter a valid price (e.g. 12.34).  Note, no '$'.");
+			} else if (guessPrice == null) {
+				// user canceled out; done playing
+				userCancel = true;
+			} else if (guessPrice.indexOf("$") == 0) {
+				// user entered $ as first character
+				alert("You entered value with '$'!  Please enter a valid price (e.g. 12.34) without '$'.");
+			} else if (parseInt(guessPrice,10) == 0) {
+				// user entered $ as first character
+				alert("You entered value 0!  Please enter price greater than 0 (e.g. 12.34) without '$'.");			
+			} else {
+				// split string value to integer
+				priceArray = guessPrice.split(".");
+				console.log(priceArray);
+				guessDollar = parseInt(priceArray[0],10);
+				guessCents = parseInt(priceArray[1],10);
+				
+			} 
+		}
+
+		if ( userCancel ) {
+			// user cancelled out of game
+			alert("Don't want to play now?  Okay, understand, maybe next time...");
+		} else {
+			console.log(guessDollar,guessCents);
+		}		
+		
+	</script>
+</body>
+</html>
