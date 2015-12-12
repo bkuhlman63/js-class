@@ -1,0 +1,113 @@
+﻿<!-- Brad Kuhlman -->
+<!-- Assignment 11-1; Dogs and Cats -->
+<!-- Create two constructor functions, one for dogs and one for cats. -->
+<!-- Create several dog and cat objects using the constructor functions. -->
+<!-- Make sure the dogs can bark and the cats can meow. -->
+<!-- Create a mouse (or some other kind of animal) by using an object literal. -->
+<!-- Add all the animals you've created to an array,  animals. -->
+<!-- Write a function, checkKindOfPet, that takes an array of animals. The function iterates through all the animals and checks to see if the animal is a dog, a cat, or something else. -->
+<!-- If the animal is a dog, display that information along with the name of the dog, and also make the dog bark. -->
+<!-- Likewise, if the animal is a cat, display that information along with the name of the cat, and also make the cat meow. -->
+<!-- Otherwise, display the name of the animal, and indicate you don't know what kind of animal it is. -->
+
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Dogs and Cats</title>
+
+	<script>
+	
+		// setup literal mouse object
+		var mouse = {
+			name: "Mickey",
+			address: "Disney, CA",
+			sex: "Male",
+			petName: "Pluto"
+		};
+
+		// setup Dog constructor function
+		function Dog(name, age, breed, likesCats) {
+			this.name = name;
+			this.age = age;
+			this.breed = breed;
+			this.likesCats = likesCats;
+			this.bark = function() {
+				console.log("Woof, Woof!");
+			};
+		} 
+
+		// setup Cat constructor function
+		function Cat(name, age, color, likesDogs) {
+			this.name = name;
+			this.age = age;
+			this.color = color;
+			this.likesDogs = likesDogs;
+			this.meow = function() {
+				console.log("Meow, Meow!");
+			};
+		} 
+		
+		// create various dog objects
+		var toby = new Dog("Toby", 2, "Mixed", true);
+		var sneakers = new Dog("Sneakers", 6, "Westie", true);
+		var cujo = new Dog("Cujo", 10, "St. Bernard", false);
+
+		// create various cat objects
+		var munch = new Cat("Munch", 4, "black", false);
+		var tc = new Cat("TC: The Cat", 6, "gray", true);
+		var garfield = new Cat("Garfield", 10, "yellow", false);
+
+		// setup animal array containing objects
+		var animals = [toby, sneakers, cujo, munch, tc, garfield, mouse];
+		
+		// call checkKindOfPet function with array of animals
+		checkKindOfPet(animals);
+		
+		// function that takes array of animals
+		function checkKindOfPet(animalsArray) {
+			// temp variable string
+			var doDontString = "";
+			// loop through each animal object
+			for (var i = 0; i < animalsArray.length; i++) {
+				// is animal a dog?
+				if (animalsArray[i] instanceof Dog) {
+					// see if dog likes cats to set appropriate string value
+					if (animalsArray[i].likesCats) { 
+						doDontString = "do";
+					} else { 
+						doDontString = "do not";
+					}
+					// set up string for console output
+					console.log("My name is " + animalsArray[i].name + " and I am a dog.  I am " + animalsArray[i].breed + " breed that is " + animalsArray[i].age + " years old and I " + doDontString + " like cats.");
+					// send barks
+					animalsArray[i].bark();
+				// is animal a cat?
+				} else if (animalsArray[i] instanceof Cat) {
+					// see if cat likes dogs to set appropriate string value
+					if (animalsArray[i].likesDogs) { 
+						doDontString = "do";
+					} else { 
+						doDontString = "do not";
+					}
+					// set up string for console output
+					console.log("My name is " + animalsArray[i].name + " and I am a cat.  I am " + animalsArray[i].color + " colored that is " + animalsArray[i].age + " years old and I " + doDontString + " like dogs.");
+					// send meows
+					animalsArray[i].meow();
+				// animal not recognized
+				} else {
+					// setup string for console output
+					console.log("My name is " + animalsArray[i].name + ". Sorry, I don't recognize this animal.");
+				}
+			}
+		}
+	
+	</script>
+	
+</head>
+<body>
+
+	<h1>UW JavaScript Assignment 11-1: Dogs and Cats</h1>
+	
+</body>
+</html>

@@ -1,0 +1,66 @@
+﻿<!-- Brad Kuhlman -->
+<!-- Assignment 9-1; Map with Coordinates -->
+<!-- Add code to display the position of the mouse with respect to the browser window (local coordinates) in the paragraph with the id "coords" when the user moves the mouse over the map (the mousemove event). -->
+<!-- Add code to display the position of the mouse with respect to the screen (screen coordinates) in the paragraph with the id "screenCoords" when the user clicks on the map (the click event). -->
+<!-- You will need to research the mousemove event and the click event to make sure you know how to access this information. -->
+<!-- You can use the innerHTML property of the <p> elements to update their contents. -->
+
+
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Where in WA state?</title>
+
+	<script>
+		// assign function init to window onload property
+		window.onload = init;
+		// main js code
+		function init() {
+			// init variables
+			var mouseMap = document.getElementById("map");
+			// mouse move handler
+			mouseMap.onmousemove = showCoords;
+			// mouse click handler
+			mouseMap.onclick = showScreenCoords;
+			// mouse out handler
+			mouseMap.onmouseout = clearCoords;
+		}
+
+		// mouse move event function
+		function showCoords(eventObj) {
+			// set element object for id coords
+			var coordsObj = document.getElementById("coords");
+			// get x and y coords
+			var x = eventObj.clientX;
+			var y = eventObj.clientY;
+			// set content for element object coords
+			coordsObj.innerHTML = "Coordinates: (" + x + "," + y + ")";
+		}
+		// mouse click event function
+		function showScreenCoords(eventObj) {
+			// set element object for id screenCoords
+			var coordsObj = document.getElementById("screenCoords");
+			// get x and y coords
+			var x = eventObj.clientX;
+			var y = eventObj.clientY;
+			// set content for element object screenCoords
+			coordsObj.innerHTML = "Mouse click coordinates: (" + x + "," + y + ")";
+		}
+		// mouse out event function
+		function clearCoords(eventObj) {
+			// clear coordinates out and go back to default values
+			document.getElementById("coords").innerHTML = "Move mouse over map to find browser window coordinates...";
+			document.getElementById("screenCoords").innerHTML = "Click map to find screen coordinates...";
+		}
+	</script>
+
+</head>
+<body>
+
+    <img id="map" src="WAmap.jpg">
+    <p id="coords">Move mouse over map to find browser window coordinates...</p>
+    <p id="screenCoords">Click map to find screen coordinates...</p>
+
+</body>
+</html>	
